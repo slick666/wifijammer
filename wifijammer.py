@@ -1,23 +1,24 @@
 #!/usr/bin/env python
 
+import argparse
+import fcntl
+import re
+import logging
+import os
+import socket
+import struct
+import sys
+import time
+
 from scapy.layers.dot11 import Dot11, Dot11Deauth, Dot11Beacon
 from scapy.layers.dot11 import Dot11Elt, Dot11ProbeResp
 from scapy.all import conf
 from scapy.all import send
 from scapy.all import sniff
 from scapy.themes import Color as ScapyColor
-import os
-import sys
-from subprocess import Popen, PIPE
 from signal import SIGINT, signal
+from subprocess import Popen, PIPE
 from threading import Thread, Lock
-import argparse
-import socket
-import struct
-import fcntl
-import time
-import re
-import logging
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)  # Shut up Scapy
 conf.verb = 0  # Scapy I thought I told you to shut up
